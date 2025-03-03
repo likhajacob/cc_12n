@@ -110,6 +110,4 @@ if (customerSection) {
             event.stopPropagation(); // Ensure Parent's Event Handler Does Not Trigger.
         });
     });
-} else {
-    console.warn("Customer section not found!");
-}
+} 
