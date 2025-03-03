@@ -72,7 +72,7 @@ function removeInventoryItem(item) {
     inventoryList.removeChild(item);
 };
 // Task 4: Business Customer Section – Handling Event Bubbling
-console.log("Demonstrated Event Bubbling in Customer Section");
+console.log("********** Demonstrated Event Bubbling in Customer Section **********");
 // Create A Nested Structure
 const customerSection = document.getElementById("customerSection");
 // Attach Click Event Listeners
@@ -81,13 +81,11 @@ customerSection.addEventListener("click", () => {
 });
 const customerCards = document.querySelectorAll(".customer-card");
 customerCards.forEach((card) => {
-  card.style.backgroundColor = "green"; 
+  card.style.backgroundColor = "#bcbcde"; // Lavender 
   card.addEventListener("click", (event) => {
     console.log(`User clicked: ${event.target.textContent}`);
+ // Ensure Parent's Event Handler Does Not Trigger.
     event.stopPropagation();
   });
 });
-} else {
-    console.warn("Customer section not found!");
-}
 
