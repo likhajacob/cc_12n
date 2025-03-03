@@ -1,20 +1,29 @@
 // Task 1: Business Dashboard – DOM Element Selection and Creation
 console.log("Created Revenue Metric Card");
+
 // Select The Dashboard Container:
-const dashboardContainer = document.getElementById("dashboard");
-const dashboardContainerQuery = document.querySelector("#dashboard");
+const dashboardContainer = document.getElementById("dashboard"); // Removed duplicate declaration
+
 // Create <div> Element To Represent The Metric Card
 const revenueCard = document.createElement("div");
+
 // Use setAttribute To Assign A Class And An Id To The New Element
 revenueCard.setAttribute("class", "metric-card");
 revenueCard.setAttribute("id", "revenueCard");
+
 // Populate The Card With A Title And A Placeholder Value
 revenueCard.innerHTML = `
   <h3>Revenue</h3>
   <p>$50,000</p>
 `;
+
 // Append The New Metric Card To The Dashboard Container
-dashboardContainer.appendChild(revenueCard);
+if (dashboardContainer) {
+    dashboardContainer.appendChild(revenueCard);
+} else {
+    console.warn("Dashboard container not found!");
+}
+
 console.log("Task 2");
 console.log("=".repeat(20));
 
@@ -25,14 +34,14 @@ const expenseCard = document.createElement("div");
 profitCard.setAttribute("class", "metric-card"); // Set attributes
 expenseCard.setAttribute("class", "metric-card");
 
-profitCard.innerHTML = "<h3>Profit</h3> <p>$0</p>"; 
+profitCard.innerHTML = "<h3>Profit</h3> <p>$0</p>";
 expenseCard.innerHTML = "<h3>Expenses</h3> <p>$0</p>";
 
 // Define or select metricDiv
-const metricDiv = document.getElementById("metrics") || document.createElement("div");
-
-// If metricDiv is newly created, append it to the body
-if (!document.getElementById("metrics")) {
+let metricDiv = document.getElementById("metrics");
+if (!metricDiv) {
+    metricDiv = document.createElement("div");
+    metricDiv.setAttribute("id", "metrics");
     document.body.appendChild(metricDiv);
 }
 
@@ -49,43 +58,54 @@ console.log(nodeListArray); // Converting NodeList to array
 nodeListArray.forEach(card => {
     card.style.background = "lightpink"; // Changing background color of cards
 });
-// Task 3 Dynamic Inventory Management
+
+// Task 3: Dynamic Inventory Management
 // selects inventory list container
 const inventoryList = document.getElementById("inventoryList");
-// function to add a new inventory item
+
 function addInventoryItem(productName) {
+    if (!inventoryList) {
+        console.warn("Inventory list container not found!");
+        return;
+    }
+
     const listItem = document.createElement("li");
-    // sets class
     listItem.setAttribute("class", "product-item");
-    // sets custom attribute for product name
-    listItem.setAttribute("data-product", productName); 
+    listItem.setAttribute("data-product", productName);
     listItem.textContent = productName;
-// added event listener to remove item when clicked
+
     listItem.addEventListener("click", function () {
-        removeInventoryItem(listItem); // removes item
+        removeInventoryItem(listItem);
     });
-// appends product item
+
     inventoryList.appendChild(listItem);
-};
-// removes item when clicked on
+}
+
 function removeInventoryItem(item) {
-    inventoryList.removeChild(item);
-};
+    if (inventoryList) {
+        inventoryList.removeChild(item);
+    }
+}
+
 // Task 4: Business Customer Section – Handling Event Bubbling
 console.log("********** Demonstrated Event Bubbling in Customer Section **********");
+
 // Create A Nested Structure
 const customerSection = document.getElementById("customerSection");
-// Attach Click Event Listeners
-customerSection.addEventListener("click", () => {
-  console.log("Customer Section Clicked");
-});
-const customerCards = document.querySelectorAll(".customer-card");
-customerCards.forEach((card) => {
-  card.style.backgroundColor = "#bcbcde"; // Lavender 
-  card.addEventListener("click", (event) => {
-    console.log(`User clicked: ${event.target.textContent}`);
- // Ensure Parent's Event Handler Does Not Trigger.
-    event.stopPropagation();
-  });
-});
 
+if (customerSection) {
+    customerSection.addEventListener("click", () => {
+        console.log("Customer Section Clicked");
+    });
+
+    const customerCards = document.querySelectorAll(".customer-card");
+    customerCards.forEach((card) => {
+        card.style.backgroundColor = "#bcbcde"; // Lavender 
+        card.addEventListener("click", (event) => {
+            console.log(`User clicked: ${event.target.textContent}`);
+            event.stopPropagation(); // Ensure Parent's Event Handler Does Not Trigger.
+        });
+    });
+} else {
+    console.warn("Customer section not found!");
+}
