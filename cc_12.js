@@ -81,9 +81,13 @@ customerSection.addEventListener("click", () => {
 });
 const customerCards = document.querySelectorAll(".customer-card");
 customerCards.forEach((card) => {
-  card.style.backgroundColor = "#green"; 
+  card.style.backgroundColor = "green"; 
   card.addEventListener("click", (event) => {
     console.log(`User clicked: ${event.target.textContent}`);
     event.stopPropagation();
   });
 });
+} else {
+    console.warn("Customer section not found!");
+}
+
