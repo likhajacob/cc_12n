@@ -2,23 +2,23 @@
 console.log("Created Revenue Metric Card");
 
 // Select The Dashboard Container:
-const dashboardContainer = document.getElementById("dashboard"); // Removed duplicate declaration
+const dashboardContainer = document.getElementById("dashboard");
 
-// Create <div> Element To Represent The Metric Card
-const revenueCard = document.createElement("div");
-
-// Use setAttribute To Assign A Class And An Id To The New Element
-revenueCard.setAttribute("class", "metric-card");
-revenueCard.setAttribute("id", "revenueCard");
-
-// Populate The Card With A Title And A Placeholder Value
-revenueCard.innerHTML = `
-  <h3>Revenue</h3>
-  <p>$50,000</p>
-`;
-
-// Append The New Metric Card To The Dashboard Container
 if (dashboardContainer) {
+    // Create <div> Element To Represent The Metric Card
+    const revenueCard = document.createElement("div");
+
+    // Use setAttribute To Assign A Class And An Id To The New Element
+    revenueCard.setAttribute("class", "metric-card");
+    revenueCard.setAttribute("id", "revenueCard");
+
+    // Populate The Card With A Title And A Placeholder Value
+    revenueCard.innerHTML = `
+      <h3>Revenue</h3>
+      <p>$50,000</p>
+    `;
+
+    // Append The New Metric Card To The Dashboard Container
     dashboardContainer.appendChild(revenueCard);
 } else {
     console.warn("Dashboard container not found!");
@@ -39,13 +39,15 @@ expenseCard.innerHTML = "<h3>Expenses</h3> <p>$0</p>";
 
 // Define or select metricDiv
 let metricDiv = document.getElementById("metrics");
+
 if (!metricDiv) {
     metricDiv = document.createElement("div");
     metricDiv.setAttribute("id", "metrics");
     document.body.appendChild(metricDiv);
 }
 
-metricDiv.appendChild(profitCard); // Both cards are adopted by metricDiv
+// Append profit and expense cards
+metricDiv.appendChild(profitCard);
 metricDiv.appendChild(expenseCard);
 
 // Task 2 Requirements
@@ -60,7 +62,6 @@ nodeListArray.forEach(card => {
 });
 
 // Task 3: Dynamic Inventory Management
-// selects inventory list container
 const inventoryList = document.getElementById("inventoryList");
 
 function addInventoryItem(productName) {
@@ -74,35 +75,38 @@ function addInventoryItem(productName) {
     listItem.setAttribute("data-product", productName);
     listItem.textContent = productName;
 
+    // Add event listener to remove item when clicked
     listItem.addEventListener("click", function () {
         removeInventoryItem(listItem);
     });
 
+    // Append product item
     inventoryList.appendChild(listItem);
 }
 
 function removeInventoryItem(item) {
-    if (inventoryList) {
+    if (inventoryList && item) {
         inventoryList.removeChild(item);
     }
 }
 
 // Task 4: Business Customer Section – Handling Event Bubbling
-console.log("********** Demonstrated Event Bubbling in Customer Section **********");
+console.log("Demonstrated Event Bubbling in Customer Section");
 
 // Create A Nested Structure
 const customerSection = document.getElementById("customerSection");
 
 if (customerSection) {
+    // Attach Click Event Listeners
     customerSection.addEventListener("click", () => {
         console.log("Customer Section Clicked");
     });
 
     const customerCards = document.querySelectorAll(".customer-card");
     customerCards.forEach((card) => {
-        card.style.backgroundColor = "#bcbcde"; // Lavender 
+        card.style.backgroundColor = "#bcbcde"; // Lavender
         card.addEventListener("click", (event) => {
-            console.log(`User clicked: ${event.target.textContent}`);
+            console.log(`User clicked: ${event.target.textContent}`); // Fixed template literal syntax
             event.stopPropagation(); // Ensure Parent's Event Handler Does Not Trigger.
         });
     });
