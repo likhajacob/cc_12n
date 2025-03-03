@@ -104,7 +104,7 @@ if (customerSection) {
 
     const customerCards = document.querySelectorAll(".customer-card");
     customerCards.forEach((card) => {
-        card.style.backgroundColor = "#bcbcde"; // Lavender
+        card.style.backgroundColor = "green";
         card.addEventListener("click", (event) => {
             console.log(`User clicked: ${event.target.textContent}`); // Fixed template literal syntax
             event.stopPropagation(); // Ensure Parent's Event Handler Does Not Trigger.
