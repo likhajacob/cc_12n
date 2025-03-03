@@ -89,21 +89,23 @@ function removeInventoryItem(item) {
         inventoryList.removeChild(item);
     }
 }
-//Task 4: Business Customer Section – Handling Event Bubbling
-const customerSection = document.getElementById("customerSection"); //Create a parent container with the id "customerSection".
-
-//Attach click event listeners to the parent container.
-customerSection.addEventListener("click", (event) => {
-  console.log("Customer section clicked"); //Logs a message.
+// Task 4: Business Customer Section – Handling Event Bubbling
+console.log("********** Demonstrated Event Bubbling in Customer Section **********");
+// Create A Nested Structure
+const customerSection = document.getElementById("customerSection");
+// Attach Click Event Listeners
+customerSection.addEventListener("click", () => {
+  console.log("Customer Section Clicked");
 });
-
-//Adds event listeners to each customer card
-const customerCards = document.querySelectorAll(".customer-card"); //Create multiple child elements with the class "customer-card".
+const customerCards = document.querySelectorAll(".customer-card");
+customerCards.forEach((card) => {
+  card.style.backgroundColor = "#bcbcde"; // Lavender 
   card.addEventListener("click", (event) => {
-    console.log("Customer card clicked"); //Logs a message.
-
-    // Prevent event handler from triggering
+    console.log(`User clicked: ${event.target.textContent}`);
+ // Ensure Parent's Event Handler Does Not Trigger.
     event.stopPropagation();
+  });
 });
+
 
 
