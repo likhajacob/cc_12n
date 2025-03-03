@@ -1,5 +1,5 @@
 // Task 1: Business Dashboard – DOM Element Selection and Creation
-console.log("***** Created Revenue Metric Card *****");
+console.log("Created Revenue Metric Card");
 // Select The Dashboard Container:
 const dashboardContainer = document.getElementById("dashboard");
 const dashboardContainerQuery = document.querySelector("#dashboard");
@@ -49,4 +49,25 @@ console.log(nodeListArray); // Converting NodeList to array
 nodeListArray.forEach(card => {
     card.style.background = "lightpink"; // Changing background color of cards
 });
-
+// Task 3 Dynamic Inventory Management
+// selects inventory list container
+const inventoryList = document.getElementById("inventoryList");
+// function to add a new inventory item
+function addInventoryItem(productName) {
+    const listItem = document.createElement("li");
+    // sets class
+    listItem.setAttribute("class", "product-item");
+    // sets custom attribute for product name
+    listItem.setAttribute("data-product", productName); 
+    listItem.textContent = productName;
+// added event listener to remove item when clicked
+    listItem.addEventListener("click", function () {
+        removeInventoryItem(listItem); // removes item
+    });
+// appends product item
+    inventoryList.appendChild(listItem);
+};
+// removes item when clicked on
+function removeInventoryItem(item) {
+    inventoryList.removeChild(item);
+};
