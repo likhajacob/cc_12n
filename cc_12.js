@@ -58,7 +58,7 @@ const nodeListArray = Array.from(allMetrics);
 console.log(nodeListArray); // Converting NodeList to array
 
 nodeListArray.forEach(card => {
-    card.style.background = "lightpink"; // Changing background color of cards
+    card.style.background = "lightpink"; //background color of cards
 });
 
 // Task 3: Dynamic Inventory Management
@@ -89,25 +89,21 @@ function removeInventoryItem(item) {
         inventoryList.removeChild(item);
     }
 }
+//Task 4: Business Customer Section – Handling Event Bubbling
+const customerSection = document.getElementById("customerSection"); //Create a parent container with the id "customerSection".
 
-// Task 4: Business Customer Section – Handling Event Bubbling
-console.log("Demonstrated Event Bubbling in Customer Section");
+//Attach click event listeners to the parent container.
+customerSection.addEventListener("click", (event) => {
+  console.log("Customer section clicked"); //Logs a message.
+});
 
-// Create A Nested Structure
-const customerSection = document.getElementById("customerSection");
+//Adds event listeners to each customer card
+const customerCards = document.querySelectorAll(".customer-card"); //Create multiple child elements with the class "customer-card".
+  card.addEventListener("click", (event) => {
+    console.log("Customer card clicked"); //Logs a message.
 
-if (customerSection) {
-    // Attach Click Event Listeners
-    customerSection.addEventListener("click", () => {
-        console.log("Customer Section Clicked");
-    });
+    // Prevent event handler from triggering
+    event.stopPropagation();
+});
 
-    const customerCards = document.querySelectorAll(".customer-card");
-    customerCards.forEach((card) => {
-        card.style.backgroundColor = "green";
-        card.addEventListener("click", (event) => {
-            console.log(`User clicked: ${event.target.textContent}`); // Fixed template literal syntax
-            event.stopPropagation(); // Ensure Parent's Event Handler Does Not Trigger.
-        });
-    });
-} 
+
