@@ -15,30 +15,38 @@ revenueCard.innerHTML = `
 `;
 // Append The New Metric Card To The Dashboard Container
 dashboardContainer.appendChild(revenueCard);
-//Task 2
 console.log("Task 2");
 console.log("=".repeat(20));
-//Creating Scenario with Profit and expense cards
 
-const profitCard = document.createElement("div"); //div creation
+// Creating Scenario with Profit and Expense Cards
+const profitCard = document.createElement("div"); // div creation
 const expenseCard = document.createElement("div");
 
-profitCard.setAttribute("class", "metric-card"); //set attributes
+profitCard.setAttribute("class", "metric-card"); // Set attributes
 expenseCard.setAttribute("class", "metric-card");
 
-profitCard.innerHTML = "<h3>Profit</h3> <p>$0</p>" 
-expenseCard.innerHTML = "<h3>Expenses</h3> <p>$0</p>"
+profitCard.innerHTML = "<h3>Profit</h3> <p>$0</p>"; 
+expenseCard.innerHTML = "<h3>Expenses</h3> <p>$0</p>";
 
-metricDiv.appendChild(profitCard); //Both cards are adopted by metricDiv
+// Define or select metricDiv
+const metricDiv = document.getElementById("metrics") || document.createElement("div");
+
+// If metricDiv is newly created, append it to the body
+if (!document.getElementById("metrics")) {
+    document.body.appendChild(metricDiv);
+}
+
+metricDiv.appendChild(profitCard); // Both cards are adopted by metricDiv
 metricDiv.appendChild(expenseCard);
-//Task 2 Requirements
 
-allMetrics = document.querySelectorAll(".metric-card")
-console.log(allMetrics); //Collecting all metric cards
+// Task 2 Requirements
+const allMetrics = document.querySelectorAll(".metric-card");
+console.log(allMetrics); // Collecting all metric cards
 
-nodeListArray = Array.from(allMetrics)
-console.log(nodeListArray); //converting nodelist to array
+const nodeListArray = Array.from(allMetrics);
+console.log(nodeListArray); // Converting NodeList to array
 
 nodeListArray.forEach(card => {
-    card.style.background = "lightpurple"; //changing background color of cards
+    card.style.background = "lightpink"; // Changing background color of cards
 });
+
